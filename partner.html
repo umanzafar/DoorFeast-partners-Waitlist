@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DoorFeast — Partner With Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F7F3EC;
+    --card:#FFFFFF;
+    --ink:#1B1815;
+    --body:#6E6A62;
+    --red:#A61E1E;
+    --red-dark:#7C1616;
+    --gold-hl: rgba(232,182,74,0.45);
+    --line:#E4DFD2;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:56px 20px 80px;
+  }
+  .wrap{width:100%; max-width:640px;}
+
+  .brandbar{display:flex; justify-content:center; margin-bottom:26px;}
+  .brandbar .logo-img{width:120px; height:auto; border-radius:14px; box-shadow:0 14px 30px -10px rgba(0,0,0,0.25);}
+
+  .eyebrow{
+    text-align:center;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--body);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+  .eyebrow::before, .eyebrow::after{content:""; width:26px; height:1px; background:var(--line);}
+
+  .hero{text-align:center; margin-bottom:30px;}
+  .hero h1{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:32px;
+    line-height:1.28;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .hero p{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--body);
+    margin:0;
+    max-width:480px;
+    margin:0 auto;
+  }
+
+  /* highlighter-marker emphasis */
+  .hl{
+    background-image: linear-gradient(var(--gold-hl), var(--gold-hl));
+    background-repeat:no-repeat;
+    background-size:100% 42%;
+    background-position:0 78%;
+    padding:0 2px;
+  }
+  .hl-red{ color:var(--red); font-weight:700; }
+
+  .why-section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px 26px;
+    margin-bottom:30px;
+  }
+  .why-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--red);
+    margin:0 0 16px;
+  }
+  .why-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--ink);
+  }
+  .why-item + .why-item{margin-top:14px;}
+  .why-icon{
+    flex-shrink:0;
+    width:24px; height:24px;
+    border-radius:50%;
+    background:var(--red);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:40px 36px 34px;
+    box-shadow:0 20px 45px -25px rgba(27,24,21,0.25);
+  }
+
+  .qpath{position:relative; padding-left:34px;}
+  .qpath::before{
+    content:"";
+    position:absolute;
+    left:10px; top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(var(--red), var(--line));
+  }
+
+  .question{position:relative; margin-bottom:28px;}
+  .question::before{
+    content:attr(data-step);
+    position:absolute;
+    left:-34px; top:0;
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--card);
+    border:2px solid var(--red);
+    color:var(--red);
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:11px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .question.hidden{display:none;}
+
+  label.qlabel{
+    display:block;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .optional-tag{
+    font-size:11px; font-weight:500; color:var(--body);
+    background:rgba(27,24,21,0.06);
+    padding:2px 8px; border-radius:6px; margin-left:8px; vertical-align:middle;
+  }
+
+  input[type="text"], input[type="url"], textarea{
+    width:100%;
+    border:1.5px solid var(--line);
+    background:#fff;
+    border-radius:10px;
+    padding:12px 14px;
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  textarea{resize:vertical; min-height:80px;}
+  input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--red);
+    box-shadow:0 0 0 4px rgba(166,30,30,0.12);
+  }
+
+  .option-list{display:flex; flex-direction:column; gap:9px;}
+  .option{
+    display:flex; align-items:center; gap:10px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:11px 14px;
+    background:#fff;
+    cursor:pointer;
+    transition:border-color .15s, background .15s;
+    font-size:14.5px;
+  }
+  .option:hover{border-color:var(--red);}
+  .option input{accent-color:var(--red); width:16px; height:16px; flex-shrink:0;}
+  .option input:checked + span{font-weight:600; color:var(--red);}
+  .option:has(input:checked){
+    background:rgba(166,30,30,0.06);
+    border-color:var(--red);
+  }
+
+  .other-input{margin-top:8px; display:none;}
+  .other-input.show{display:block;}
+
+  .submit-row{padding-left:34px; margin-top:8px;}
+  button.submit-btn{
+    width:100%;
+    border:none;
+    border-radius:999px;
+    padding:15px 20px;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:#fff;
+    background:var(--red);
+    cursor:pointer;
+    box-shadow:0 12px 24px -8px rgba(166,30,30,0.45);
+    transition:transform .15s, box-shadow .15s, background .15s;
+  }
+  button.submit-btn:hover{background:var(--red-dark); transform:translateY(-1px);}
+  button.submit-btn:disabled{opacity:0.65; cursor:not-allowed; transform:none;}
+
+  .privacy-note{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--body);
+    margin-top:14px;
+    padding-left:34px;
+  }
+
+  .error-banner{
+    display:none;
+    background:#FBE7E5;
+    border:1px solid #D8534B;
+    color:#8A2E28;
+    font-size:13px;
+    padding:10px 14px;
+    border-radius:10px;
+    margin-bottom:20px;
+  }
+  .error-banner.show{display:block;}
+
+  @media (max-width:480px){
+    .card, .why-section{padding:26px 22px 24px;}
+    .hero h1{font-size:25px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar">
+    <img src="logo.png" alt="DoorFeast" class="logo-img">
+  </div>
+
+  <div class="eyebrow">Launch Partner Program</div>
+
+  <div class="hero">
+    <h1>Grow your takeaway with DoorFeast — <span class="hl">keep more of every order</span>.</h1>
+    <p>Low fees, no lock-in, and real support — join our launch partner list and we'll be in touch with the full details.</p>
+  </div>
+
+  <div class="why-section">
+    <p class="why-title">Why DoorFeast</p>
+    <div class="why-item">
+      <span class="why-icon">✓</span>
+      <span><span class="hl-red">Lower fees</span> than the big platforms.</span>
+    </div>
+    <div class="why-item">
+      <span class="why-icon">✓</span>
+      <span><span class="hl-red">No lock-in</span> — stay on Just Eat, Uber Eats, or anywhere else if you like, we're just an extra channel.</span>
+    </div>
+    <div class="why-item">
+      <span class="why-icon">✓</span>
+      <span><span class="hl-red">Real support</span> — a real person you can actually talk to, not a chatbot.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div id="errorBanner" class="error-banner">Something went wrong sending your details. Please try again in a moment.</div>
+
+    <form id="partnerForm">
+      <div class="qpath">
+
+        <div class="question" data-step="1">
+          <label class="qlabel">Business name</label>
+          <input type="text" id="businessName" required>
+        </div>
+
+        <div class="question" data-step="2">
+          <label class="qlabel">Owner name</label>
+          <input type="text" id="ownerName" required>
+        </div>
+
+        <div class="question" data-step="3">
+          <label class="qlabel">Phone number</label>
+          <input type="text" id="phone" required>
+        </div>
+
+        <div class="question" data-step="4">
+          <label class="qlabel">Address / Postcode</label>
+          <input type="text" id="address" required>
+        </div>
+
+        <div class="question" data-step="5">
+          <label class="qlabel">Website <span class="optional-tag">Optional</span></label>
+          <input type="url" id="website" placeholder="https://">
+        </div>
+
+        <div class="question" data-step="6">
+          <label class="qlabel">Cuisine type</label>
+          <div class="option-list">
+            <label class="option"><input type="radio" name="cuisine" value="Indian" required><span>Indian</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Chinese"><span>Chinese</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Pizza"><span>Pizza</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Kebab"><span>Kebab</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Fast Food"><span>Fast Food</span></label>
+            <label class="option"><input type="radio" id="cuisineOtherCheck" name="cuisine" value="Other"><span>Other</span></label>
+          </div>
+          <input type="text" id="cuisineOtherText" class="other-input" placeholder="Tell us your cuisine type…">
+        </div>
+
+        <div class="question" data-step="7">
+          <label class="qlabel">Are you currently on any delivery platform?</label>
+          <div class="option-list" id="platformGroup">
+            <label class="option"><input type="radio" name="currentPlatform" value="Just Eat" required><span>Just Eat</span></label>
+            <label class="option"><input type="radio" name="currentPlatform" value="Uber Eats"><span>Uber Eats</span></label>
+            <label class="option"><input type="radio" name="currentPlatform" value="Deliveroo"><span>Deliveroo</span></label>
+            <label class="option"><input type="radio" name="currentPlatform" value="Foodhub"><span>Foodhub</span></label>
+            <label class="option"><input type="radio" name="currentPlatform" value="None — walk-in/phone orders only"><span>None — walk-in/phone orders only</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-step="8" id="frustrationQuestion">
+          <label class="qlabel">If yes, what's your biggest frustration with your current platform?</label>
+          <p style="font-size:12.5px;color:var(--body);margin:-4px 0 10px;">Select all that apply</p>
+          <div class="option-list">
+            <label class="option"><input type="checkbox" name="frustration" value="Commission is too high"><span>Commission is too high</span></label>
+            <label class="option"><input type="checkbox" name="frustration" value="Payments are late"><span>Payments are late</span></label>
+            <label class="option"><input type="checkbox" name="frustration" value="Poor support"><span>Poor support</span></label>
+            <label class="option"><input type="checkbox" name="frustration" value="Unfair refund policy"><span>Unfair refund policy</span></label>
+            <label class="option"><input type="checkbox" name="frustration" value="No issues, happy with it"><span>No issues, happy with it</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-step="9">
+          <label class="qlabel">Do you have your own delivery driver?</label>
+          <div class="option-list">
+            <label class="option"><input type="radio" name="hasDriver" value="Yes" required><span>Yes</span></label>
+            <label class="option"><input type="radio" name="hasDriver" value="No"><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="question" data-step="10">
+          <label class="qlabel">Best day/time to contact you</label>
+          <input type="text" id="contactTime" required placeholder="e.g. Weekdays after 4pm">
+        </div>
+
+        <div class="question" data-step="11">
+          <label class="qlabel">What's one thing you'd want us to do that other food delivery platforms don't? <span class="optional-tag">Optional</span></label>
+          <textarea id="wishlist" placeholder="Your thoughts…"></textarea>
+        </div>
+
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="submit-btn" id="submitBtn">Join as a Partner →</button>
+      </div>
+      <p class="privacy-note">We'll only use this to get in touch about setting you up on DoorFeast, including full pricing and package details. No spam.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // 👉 Paste your Google Apps Script Web App URL for the PARTNER form here (see PARTNER_SETUP.md)
+  const APPS_SCRIPT_URL = "PASTE_YOUR_PARTNER_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  // Show/hide "Other" cuisine text field
+  const cuisineOtherCheck = document.getElementById('cuisineOtherCheck');
+  const cuisineOtherText = document.getElementById('cuisineOtherText');
+  cuisineOtherCheck.addEventListener('change', () => {
+    cuisineOtherText.classList.toggle('show', cuisineOtherCheck.checked);
+    if(cuisineOtherCheck.checked) cuisineOtherText.focus();
+  });
+
+  // Show frustration question only if they're on a platform (not "None")
+  const frustrationQuestion = document.getElementById('frustrationQuestion');
+  const platformInputs = document.querySelectorAll('input[name="currentPlatform"]');
+  function toggleFrustrationVisibility(){
+    const checked = document.querySelector('input[name="currentPlatform"]:checked');
+    const onPlatform = checked && !checked.value.startsWith('None');
+    frustrationQuestion.classList.toggle('hidden', !onPlatform);
+  }
+  platformInputs.forEach(inp => inp.addEventListener('change', toggleFrustrationVisibility));
+  toggleFrustrationVisibility(); // hidden by default until a choice is made
+
+  const form = document.getElementById('partnerForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorBanner = document.getElementById('errorBanner');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBanner.classList.remove('show');
+
+    const cuisine = (document.querySelector('input[name="cuisine"]:checked') || {}).value || "";
+    const cuisineFinal = cuisine === 'Other' && cuisineOtherText.value.trim()
+      ? `Other: ${cuisineOtherText.value.trim()}` : cuisine;
+
+    const frustrations = Array.from(document.querySelectorAll('input[name="frustration"]:checked'))
+      .map(el => el.value).join(", ");
+
+    const payload = {
+      businessName: document.getElementById('businessName').value.trim(),
+      ownerName: document.getElementById('ownerName').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      address: document.getElementById('address').value.trim(),
+      website: document.getElementById('website').value.trim(),
+      cuisine: cuisineFinal,
+      currentPlatform: (document.querySelector('input[name="currentPlatform"]:checked') || {}).value || "",
+      frustrations: frustrations,
+      hasDriver: (document.querySelector('input[name="hasDriver"]:checked') || {}).value || "",
+      contactTime: document.getElementById('contactTime').value.trim(),
+      wishlist: document.getElementById('wishlist').value.trim()
+    };
+
+    if(!payload.businessName || !payload.ownerName || !payload.phone || !payload.address ||
+       !payload.cuisine || !payload.currentPlatform || !payload.hasDriver || !payload.contactTime){
+      errorBanner.textContent = "Please fill in all required fields before submitting.";
+      errorBanner.classList.add('show');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+
+    try {
+      if(APPS_SCRIPT_URL.includes("PASTE_YOUR")){
+        throw new Error("Backend not configured yet");
+      }
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+      window.location.href = "partner-thankyou.html";
+    } catch (err) {
+      console.error(err);
+      errorBanner.textContent = "Something went wrong sending your details. Please try again in a moment.";
+      errorBanner.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Join as a Partner →";
+    }
+  });
+</script>
+</body>
+</html>
