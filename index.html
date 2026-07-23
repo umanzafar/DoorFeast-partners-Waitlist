@@ -254,7 +254,7 @@
   <div class="eyebrow">Launch Partner Program</div>
 
   <div class="hero">
-    <h1>Grow your takeaway with DoorFeast  <span class="hl">keep more of every order</span>.</h1>
+    <h1>Grow your takeaway with DoorFeast — <span class="hl">keep more of every order</span>.</h1>
     <p>Low fees, no lock-in, and real support. Join our launch partner list, and we'll be in touch with the full details.</p>
   </div>
 
@@ -266,11 +266,11 @@
     </div>
     <div class="why-item">
       <span class="why-icon">✓</span>
-      <span><span class="hl-red">No obligation to use us exclusively</span> Stay on Just Eat, Uber Eats, or anywhere else if you like; we're just an extra channel.</span>
+      <span><span class="hl-red">No obligation to use us exclusively</span> — stay on Just Eat, Uber Eats, or anywhere else if you like; we're just an extra channel.</span>
     </div>
     <div class="why-item">
       <span class="why-icon">✓</span>
-      <span><span class="hl-red">Real support</span> 24/7 support, whenever you need it.</span>
+      <span><span class="hl-red">Real support</span> — 24/7 support, whenever you need it.</span>
     </div>
   </div>
 
@@ -294,10 +294,12 @@
           <label class="qlabel">Phone number</label>
           <input type="text" id="phone" required>
         </div>
+
         <div class="question" data-step="4">
           <label class="qlabel">Email</label>
           <input type="text" id="email" required placeholder="you@example.com">
         </div>
+
         <div class="question" data-step="5">
           <label class="qlabel">Address / Postcode</label>
           <input type="text" id="address" required>
@@ -307,7 +309,21 @@
           <label class="qlabel">Website <span class="optional-tag">Optional</span></label>
           <input type="url" id="website" placeholder="https://">
         </div>
+
         <div class="question" data-step="7">
+          <label class="qlabel">Cuisine type</label>
+          <div class="option-list">
+            <label class="option"><input type="radio" name="cuisine" value="Indian" required><span>Indian</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Chinese"><span>Chinese</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Pizza"><span>Pizza</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Kebab"><span>Kebab</span></label>
+            <label class="option"><input type="radio" name="cuisine" value="Fast Food"><span>Fast Food</span></label>
+            <label class="option"><input type="radio" id="cuisineOtherCheck" name="cuisine" value="Other"><span>Other</span></label>
+          </div>
+          <input type="text" id="cuisineOtherText" class="other-input" placeholder="Tell us your cuisine type…">
+        </div>
+
+        <div class="question" data-step="8">
           <label class="qlabel">Are you currently on any delivery platform?</label>
           <p style="font-size:12.5px;color:var(--body);margin:-4px 0 10px;">Select all that apply</p>
           <div class="option-list" id="platformGroup">
@@ -316,17 +332,6 @@
             <label class="option"><input type="checkbox" name="currentPlatform" value="Deliveroo"><span>Deliveroo</span></label>
             <label class="option"><input type="checkbox" name="currentPlatform" value="Foodhub"><span>Foodhub</span></label>
             <label class="option"><input type="checkbox" name="currentPlatform" value="None — walk-in/phone orders only"><span>None — walk-in/phone orders only</span></label>
-         </div>
-      </div>
-
-        <div class="question" data-step="8">
-          <label class="qlabel">Are you currently on any delivery platform?</label>
-          <div class="option-list" id="platformGroup">
-            <label class="option"><input type="radio" name="currentPlatform" value="Just Eat" required><span>Just Eat</span></label>
-            <label class="option"><input type="radio" name="currentPlatform" value="Uber Eats"><span>Uber Eats</span></label>
-            <label class="option"><input type="radio" name="currentPlatform" value="Deliveroo"><span>Deliveroo</span></label>
-            <label class="option"><input type="radio" name="currentPlatform" value="Foodhub"><span>Foodhub</span></label>
-            <label class="option"><input type="radio" name="currentPlatform" value="None — walk-in/phone orders only"><span>None — walk-in/phone orders only</span></label>
           </div>
         </div>
 
@@ -371,7 +376,6 @@
 </div>
 
 <script>
-  // 👉 Paste your Google Apps Script Web App URL for the PARTNER form here (see PARTNER_SETUP.md)
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDjsDRufac9aYdL9q3Uymw69W4qvFktCPPgQZHNavPi1xkyFhVrN8ggl3Y9Rapg-5XLA/exec";
 
   // Show/hide "Other" cuisine text field
@@ -391,7 +395,7 @@
     frustrationQuestion.classList.toggle('hidden', !onPlatform);
   }
   platformInputs.forEach(inp => inp.addEventListener('change', toggleFrustrationVisibility));
-  toggleFrustrationVisibility(); // hidden by default until a choice is made
+  toggleFrustrationVisibility();
 
   const form = document.getElementById('partnerForm');
   const submitBtn = document.getElementById('submitBtn');
@@ -412,16 +416,18 @@
       businessName: document.getElementById('businessName').value.trim(),
       ownerName: document.getElementById('ownerName').value.trim(),
       phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
       address: document.getElementById('address').value.trim(),
       website: document.getElementById('website').value.trim(),
       cuisine: cuisineFinal,
-      currentPlatform: Array.from(document.querySelectorAll('input[name="currentPlatform"]:checked')).map(el => el.value).join(", "),      frustrations: frustrations,
+      currentPlatform: Array.from(document.querySelectorAll('input[name="currentPlatform"]:checked')).map(el => el.value).join(", "),
+      frustrations: frustrations,
       hasDriver: (document.querySelector('input[name="hasDriver"]:checked') || {}).value || "",
       contactTime: document.getElementById('contactTime').value.trim(),
       wishlist: document.getElementById('wishlist').value.trim()
     };
 
-    if(!payload.businessName || !payload.ownerName || !payload.phone || !payload.address ||
+    if(!payload.businessName || !payload.ownerName || !payload.phone || !payload.email || !payload.address ||
        !payload.cuisine || !payload.currentPlatform || !payload.hasDriver || !payload.contactTime){
       errorBanner.textContent = "Please fill in all required fields before submitting.";
       errorBanner.classList.add('show');
